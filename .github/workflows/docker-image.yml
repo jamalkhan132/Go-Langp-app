@@ -18,5 +18,5 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: lest docker image
       run: docker images
-    - name: dockerlogine
-      run: Docker logine "${{secrate.DOCKER_LOGINE}}" -p "${{secrate.DOCKER_PASSWORD}}"
+    - name: docker login
+      run: docker login --username '${{secrets.DOCKER_LOGIN}}' --password '${{secrets.DOCKER_PASSWORD}}'
