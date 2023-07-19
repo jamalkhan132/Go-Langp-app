@@ -18,5 +18,7 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: lest docker image
       run: docker images
-    - name: docker login
-      run: docker login --username '${{secrets.DOCKER_LOGIN}}' --password '${{secrets.DOCKER_PASSWORD}}'
+    - name: acr-sign-push
+    - name: tag docker image
+      run: docker tag githubactions-aks-demo:'${{github.sha}}' '${{secrets.DOCKER_LOGIN}}'/Go-Langp-app:'${{github.sha}}'
+ 
