@@ -22,8 +22,8 @@ jobs:
   
      # run: dotnet build -c release
     
-    - name: docker build
-      run: docker build -t githubactions-aks-demo:'${{github.sha}}' .
+#     - name: docker build
+#       run: docker build -t githubactions-aks-demo:'${{github.sha}}' .
       
 #     - uses: actions/checkout@v2
 #     - uses: azure/login@v1
@@ -39,11 +39,11 @@ jobs:
 #     - name: push docker image
 #       run: docker push '${{secrets.DOCKER_LOGIN}}'/githubactions-aks-demo:'${{github.sha}}'
       
-#     - name: Azure Kubernetes set context
-#       uses: Azure/aks-set-context@v1
-#       with:
-#         # Azure credentials i.e. output of `az ad sp create-for-rbac --sdk-auth`
-#         creds: '${{secrets.AZURE_CREDENTIALS}}'
+    - name: Azure Kubernetes set context
+      uses: azure/login@v1
+      with:
+        # Azure credentials i.e. output of `az ad sp create-for-rbac --sdk-auth`
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 #         # Resource Group Name
 #         resource-group: aks-demo-rg
 #         # AKS Cluster Name
@@ -66,7 +66,7 @@ jobs:
         
 #       # Deploy to k8s cluster
 #     - name: Deploy to Kubernetes cluster
-#       uses: Azure/k8s-deploy@v1
+#       uses: uses: azure/login@v1
 #       with:        
 #         # Path to the manifest files which will be used for deployment.
 #         manifests: |
@@ -78,4 +78,6 @@ jobs:
 #         imagepullsecrets: docker-image-pull-secret
 #         # deploy/promote/reject
 #         action: deploy
+  
+        
         
